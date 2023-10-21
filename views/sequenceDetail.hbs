@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+     table {
+                border-collapse: collapse;
+            }
+            th, td {
+                width:150px;
+                text-align:center;
+                border:1px solid black;
+                padding:5px
+              
+            }
+</style>
+<body>
+    <table>
+  <tr>
+      <th><h1>index</h1></th>
+      <th><h1>first_num</h1></th>
+    <th><h1>second_num</h1></th>
+    <th><h1>third_num</h1></th>
+    <th><h1>update</h1></th>
+    <th><h1>remove</h1></th>
+  </tr>
+  {{#each sequence}}
+  <tr>
+    <td><h4>{{this.sequence_id}}</h4></td>
+    <td><h4>{{this.first_num}}</h4></td>
+    <td><h4>{{this.second_num}}</h4></td>
+    <td><h4>{{this.third_num}}</h4></td>
+
+    <td><form method="get" action="/admin/setSequence/{{this.sequence_id}}" >
+             <div class="d-grid gap-3">
+                 <button class="btn btn-primary" type="submit">update Details</button>
+             </div>
+             </form></td>
+
+       <td><form method="post" action="/admin/removeSequence/{{this.sequence_id}}" >
+      <button class="btn btn-primary" type="submit" >remove</button></form></td>
+  </tr>
+  {{/each}}
+</table>
+<a href="/user/mainPage" style="position:relative;left:15px">goback to mainPage</a>
+
+</body>
+</html>

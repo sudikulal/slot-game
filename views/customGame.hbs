@@ -1,0 +1,148 @@
+<html>
+
+<head>
+    <title>Slot Machine!</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous" />
+    <style>
+        * {
+            font-family: monospace;
+        }
+
+        body {
+            margin: 10px;
+        }
+
+        .slot-number {
+            font-size: 100px;
+        }
+
+        .center {
+            text-align: center;
+        }
+
+        .row {
+            display: flex;
+        }
+
+        .lever {
+            margin-top: 5px;
+        }
+
+        table.center1 {
+            margin-left: 50%;
+        }
+
+
+
+        a:hover {
+            color: black;
+            text-decoration: none;
+        }
+
+        #guess {
+            margin-top: 15%;
+            width: 60%;
+            text-align: center;
+        }
+
+        input {
+            text-align: center;
+        }
+
+        #game {
+            margin-top: 10%;
+        }
+
+        #id {}
+    </style>
+</head>
+
+<body class="jumbotron jumbotron-fluid">
+    <div class="row">
+        <div class="col">
+            <h1 class="display-4">Play Slot!</h1>
+            <p class="lead">
+                customRoom
+            </p>
+            <hr class="my-4" />
+            <p>
+                Hit Play button to start
+            </p>{{#each result}}
+                {{#if this.valid}}
+                    <p>name:{{this.name}}
+                    <p>coins:{{this.coins}}</p>
+                    <p>room:{{this.room_code}}</p>
+                {{/if}}
+            {{/each}}
+            <a href="/user/mainPage">mainPage</a>
+        </div>
+        <div class="col">
+            <table class="center1">
+                <tbody>
+                    
+                        {{#each num}}
+                        <tr>
+                        <td>
+                            <h2>{{this}}</h2>
+                        </td>
+                        </tr>
+                        {{/each}}
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="container" id="game">
+        <div class="row">
+            {{#each result}}
+                <div class="col">
+                    <h3>{{this.player_id}}</h3>
+                    <h4>{{this.name}}</h4>
+                    {{#if this.valid}}
+                        {{#if this.number}}
+                            <form>
+                                <input type="text" name="number" class="form-control" pattern="[0-9]{3}"
+                                    value={{this.number}} readonly>
+                            </form>
+                        {{else}}
+                            <form method="post" action="/customRoom/number/{{this.player_id}}">
+                                <input type="text" name="number" class="form-control" pattern="[0-9]{3}"
+                                    placeholder="---" value={{this.number}}>
+                                <input type="room" name="room" value="{{this.room_id}}" hidden>
+                                <button type="submit" class="btn btn-primary my-5" id="play">submit</button>
+                            </form>
+                        {{/if}}
+                    {{else}}
+                        <form>
+                            <input for="num" class="form-control" value="{{this.number}}" readonly>
+                        </form>
+
+                    {{/if}}
+                    {{#if this.won}}
+                        <h2>{{this.name}} won</h2>
+                    {{/if}}
+                </div>
+            {{/each}}
+
+        </div>
+        {{#if host}}
+            <form method="post" action="/customRoom/starGame">
+                <button type="submit" class="btn btn-primary" style="position:fixed;bottom:150px;left:15px">start
+                    game</button>
+            </form>
+
+            <form method="post" action="/customRoom/closeRoom/{{roomid}}">
+                <button type="submit" class="btn btn-primary" style="position:fixed;bottom:150px;right:15px">end
+                    session</button>
+            </form>
+        {{else}}
+            <form method="post" action="/exitRoom">
+                <button type="submit" class="btn btn-primary"
+                    style="position:fixed;bottom:150px;right:15px">exit</button>
+            </form>
+        {{/if}}
+    </div>
+</body>
+
+</html>

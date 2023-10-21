@@ -1,0 +1,9 @@
+{
+"MYSQL_DATABASE" : "",
+"MYSQL_HOST":"",
+"MYSQL_USER":"",
+"MYSQL_PASSWORD":"",
+"MYSQL_DB_PORT":"",
+"JWT_SECRETE_KEY":""
+
+}

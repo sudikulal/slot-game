@@ -1,0 +1,154 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
+  <style>
+    nav {
+      background-color: orange;
+      color: black;
+      padding: 40px 60px;
+      display:
+        flex;
+      justify-content: space-between;
+    }
+
+    nav ul {
+      display: flex;
+      justify-content: space-around;
+      align-items: flex-end;
+    }
+
+    nav li {
+      list-style:
+        none;
+    }
+
+    nav li a {
+      color: aliceblue;
+      text-decoration: none;
+      font-weight:
+        bold;
+      padding: 5px 8px;
+    }
+
+    nav li a:hover {
+      color: blue;
+      text-decoration:
+        none;
+    }
+
+    .container {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      align-content: center;
+    }
+
+    .card {
+      background-color: #eb9513;
+    }
+
+    body {
+      height:
+        100vh;
+      background-color: #063970;
+    }
+    .detail{
+      color: white;
+    }
+
+    #reward{
+      visibility:hidden;
+    }
+  </style>
+  <title>Document</title>
+</head>
+
+<body>
+
+    <nav>
+    <h4>slot game</h4>
+    <ul>
+      <li><a href="/admin/detail" id="admin">Admin</a></li>
+      <li><a href="/user/profile">Profile</a></li>
+      <li><a href="/leadBoard">LearderBoard</a></li>
+      <li><a href="/user/friends">friends</a></li>
+      <li><a href="/chat">chat</a></li>
+      <li> <a href="/user/logout">Logout</a></li>
+
+    </ul>
+  </nav>
+
+
+  <div class="mt-4">
+    <ul class="detail">
+      <li>name:  {{name}}</li>
+      <li>coins:  {{coins}}</li>
+      <li>total game:  {{total_game}}</li>
+      <li>game won:   {{game_won}}</li>
+      <li>game losed:  {{game_loss}}</li>
+      <li>jackpot won:{{jackpot}}</li>
+      <li><form method="POST" action="/user/reward">
+      <div class="mb-3">
+      <button class="btn btn-primary my-2" class="reward" id="reward" type="submit">daily reward</button>
+    </form></li>
+    </ul>
+    <form method="get" action="/customRoom">
+      <div class="mb-3">
+      <button class="btn btn-primary my-2"  type="submit" style="margin: 46%;">create room</button>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"></script>
+
+  <div class="container my-5">
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Sequence Slot Mode</h5>
+            <p class="card-text my-4">
+              In this mode there will be a predefined set of number sequences.
+              The player will hit the play button upon which a number should
+              be generated randomly and should check if the generated number
+              matches any of the predefined number sequence set then the
+              player will be awarded with coins . On each play button click
+              players certain coins should be deducted.</p>
+            <a href="/user/sequenceMode" class="btn btn-primary">Start Game</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Jackpot Slot Mode </h5>
+            <p class="card-text my-4">in this mode players will be given an
+              option to enter their own number sequence . On click of play
+              button , 10 randomly generated number sequence sets will be
+              generated . If the player entered number sequence is present in
+              the randomly generated set then the player will be given the
+              jackpot reward i.e coins.<br /><br /></p>
+            <a href="/user/jackpotMode" class="btn btn-primary">startgame</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+<script>
+  var isadmin = {{admin}}
+  if (isadmin === 0 ) {
+    document.getElementById("admin").style.visibility ="hidden"
+  }
+  
+  var currentTime = {{time}}
+  if(currentTime+86400000 <= Date.now()){
+    document.getElementById("reward").style.visibility ="visible"
+  }
+</script>
+
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+     table {
+                border-collapse: collapse;
+            }
+            th, td {
+                width:150px;
+                text-align:center;
+                border:1px solid black;
+                padding:5px
+              
+            }
+</style>
+<body>
+    <table>
+  <tr>
+      <th><h1>user_id</h1></th>
+      <th><h1>Name</h1></th>
+    <th><h1>email_id</h1></th>
+    <th><h1>status</h1></th>
+  </tr>
+  {{#each result}}
+  <tr>
+    <td><h4>{{this.user_id}}</h4></td>
+    <td><h4>{{this.name}}</h4></td>
+    <td><h4>{{this.email_id}}</h4></td>
+    <td>
+      <form method="post" action="/user/accept/{{this.user_id}}" >
+      <button class="btn btn-primary" type="submit">accept</button></form>
+
+      <form method="post" action="/user/reject/{{this.user_id}}" >
+      <button class="btn btn-primary" type="submit">reject</button></form>
+    </td>
+     
+  </tr>
+  {{/each}}
+</table>
+<a href="/user/mainPage" style="position:relative;left:15px">goback to mainPage</a>
+
+</body>
+</html>

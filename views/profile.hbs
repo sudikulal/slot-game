@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+<head>
+    <style>
+       .form-control{
+      width: 40%;
+    } 
+    </style>
+    <title>
+        User Profile
+    </title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="form-popup" id="myForm">
+        <form method="POST" action="/user/update" autocomplete="off" class="form-container">
+            <label for="name" class="form-label" class="form-control my-3">Name</label>
+            <input type="text" name="name" id="name" class="form-control" value="{{name}}">
+            <label for="email_id" class="form-label">email_id</label>
+            <input class="form-control" type="text" value="{{email_id}}" readonly>
+            <label for="password" class="form-label">Password</label>
+            <input type="text" name="password" id="password" class="form-control">
+            <label for="phone" class="form-label">phone</label>
+            <input type="text" name="phone" id="phone" class="form-control" value="{{phone}}">
+            <label for="gender" class="form-label">gender</label>
+            <select class="form-control" aria-label="Default select example" name="gender" id="gender">
+                <option >{{gender}}</option>
+                <option value="1">male</option>
+                <option value="2">female</option>
+                <option value="3">others</option>
+            </select>
+            <label for="coins" class="form-label">coins</label>
+            <input class="form-control" type="text" value="{{coins}}" readonly>
+            <button class="btn btn-primary my-2">update</button>
+        </form>
+    </div>
+    </div>
+
+</body>
+
+</html>
